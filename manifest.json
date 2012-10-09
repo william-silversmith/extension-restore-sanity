@@ -15,7 +15,10 @@
         "*://www.msnbc.com/*",
         "*://www.msnbc.msn.com/*",
         "*://www.huffingtonpost.com/*",
-        "*://www.drudgereport.com/*"
+        "*://www.drudgereport.com/*",
+        "*://abcnews.go.com/*",
+        "*://www.washingtonpost.com/politics/*",
+        "*://www.nytimes.com/*politics*"
       ],
       "js": ["js/jquery-1.8.2.min.js", "js/content.js"],
       "css": ["css/content.css"]

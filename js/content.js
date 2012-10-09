@@ -18,7 +18,7 @@ var rules = [
 		regexp: /\?\s*$/,
 		except_regexp: /number|rising|falling|^(who|what|where|why|when)/i,
 		apology: "ended with a question mark.",
-		description: "Headlines ending with a question mark are often stories or opinions either so tenuous that the author's editor wouldn't let the instution stand behind it or story is so obvious you don't need to read it. This rule isn't perfect as sometimes a legitimate question is asked when analyzing data or when addressing the reader."
+		description: "Headlines ending with a question mark are often stories or opinions either so tenuous that the author's editor wouldn't let the publication stand behind it or is so obvious you don't need to read it. This rule isn't perfect as sometimes a legitimate question is asked when analyzing data or when addressing the reader."
 	},
 	{
 		name: "No Talking Points Volleyball",

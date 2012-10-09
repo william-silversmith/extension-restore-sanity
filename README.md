@@ -3,6 +3,11 @@ extension-restore-sanity
 
 A Chrome extension to eliminate some classes of bullshit political stories from news sites.
 
+Disclaimer
+========================
+
+This product is not affiliated with or endorsed by ANYONE.
+
 License
 ========================
 

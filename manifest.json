@@ -1,0 +1,27 @@
+{
+  "name": "The Extension to Restore Sanity",
+  "manifest_version": 2,
+  "version": "0.1",
+  "description": "Delete superfluous riff-raff from news sites.",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.google.com/*",
+        "*://news.google.com/*",
+        "*://www.cnn.com/*",
+        "*://www.foxnews.com/*",
+        "*://www.foxbusiness.com/*",
+        "*://www.nbcnews.com/*",
+        "*://www.msnbc.com/*",
+        "*://www.msnbc.msn.com/*",
+        "*://www.huffingtonpost.com/*",
+        "*://www.drudgereport.com/*"
+      ],
+      "js": ["js/jquery-1.8.2.min.js", "js/content.js"],
+      "css": ["css/content.css"]
+    }
+  ],
+  "background": { 
+    "page": "background.html"
+  }
+}

@@ -1,8 +1,5 @@
 /* 	content.js
 
-	Extension: The Extension to Restore Sanity
-	Author: William Silversmith. Copyright 2012.
-
 	Contains the logic to drive the extension.
  */
 
@@ -11,7 +8,7 @@ var rules = [
 		name: "No Gaffes",
 		regexp: /gaffe/i,
 		apology: "contained the word \"gaffe\".",
-		description: "Headlines containing the word \"gaffe\" are unlikely to contain substansive policy discussion. Instead, they tend to prey on misspoken phrases or embarrassing omissions."
+		description: "Headlines containing the word \"gaffe\" are unlikely to contain substansive policy discussion. Instead, they tend to focus on misspoken phrases or embarrassing omissions."
 	},
 	{
 		name: "No Tenuous Stories or Rhetorical Questions",
@@ -31,7 +28,14 @@ var rules = [
 		regexp: /lawmaker/i,
 		except_regexp: /representative|senator|senate|house/i,
 		apology: 'indicated that the story will revolve around someone who isn\'t actually important.',
-		description: "The word \"Lawmaker\" isn't typically used in a headline unless the person being referenced is not someone more important (like a Senator or Representative). Most likely, the linked story will be about someone unimportant saying something stupid that (hopefully) no one else in their party would agree with. If their party did agree, you can bet the reporter would have gotten the statement from an important person."
+		description: "The word \"Lawmaker\" isn't typically used in a headline unless the person being referenced is not someone more important (like a Senator or Representative). Most likely, the linked story will be about a legislator at the state or local level saying something stupid that (hopefully) no one else in their party agrees with. If their party did agree, you can bet the reporter would have gotten the statement from an important person."
+	},
+	{
+		name: "No Spin Zone",
+		regexp: /\bspin\b/i,
+		except_regexp: /albumn|music|bowling|spin[\s-]off|baryon|lepton|electron|neutron|proton|physics/i,
+		apology: 'contained the word \"spin\".',
+		description: "Any article mentioning spin is almost certaining spinning."
 	}
 ];
 
@@ -62,7 +66,12 @@ function Scrub(phrase) {
  * notices.
  */
 function EliminateUselessStories () {
-	jQuery('a').not('a.restoresanity').each(function (index, elem) {
+	jQuery('a')
+		.not('a.restoresanity')
+		.not('a:contains("section to my Google News homepage")')
+		.not('a:contains("Create an email alert for")')
+		.each(function (index, elem) {
+
 		elem = jQuery(elem);
 		var targetphrase = elem.text();
 
@@ -144,6 +153,7 @@ jQuery(document).ready(function () {
 
 	EliminateUselessStories();
 
+	setTimeout(EliminateUselessStories, 1000);
 	setTimeout(EliminateUselessStories, 2500);
 
 	jQuery(document).find('html').click(function (event) {

@@ -11,11 +11,11 @@ var rules = [
 		description: "Headlines containing the word \"gaffe\" are unlikely to contain substansive policy discussion. Instead, they tend to focus on misspoken phrases or embarrassing omissions."
 	},
 	{
-		name: "No Tenuous Stories or Rhetorical Questions",
-		regexp: /\?\s*$/,
+		name: "No Tenuous Stories, Speculations, or Rhetorical Questions",
+		regexp: /may|might|rumored to|\?\s*$/,
 		except_regexp: /number|rising|falling|^(who|what|where|why|when)/i,
-		apology: "ended with a question mark.",
-		description: "Headlines ending with a question mark are often stories or opinions either so tenuous that the author's editor wouldn't let the publication stand behind it or so obvious you don't need to read it. This rule isn't perfect as sometimes a legitimate question is asked when analyzing data or addressing the reader."
+		apology: "contained a qualifier.",
+		description: "Headlines containing qualifiers such as \"may\" or ending with a question mark are often stories or opinions either so tenuous that the author's editor wouldn't let the publication stand behind it or so obvious you don't need to read it. This rule isn't perfect as sometimes a legitimate question is asked when analyzing data or addressing the reader."
 	},
 	{
 		name: "No Talking Points Volleyball",

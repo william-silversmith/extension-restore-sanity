@@ -18,6 +18,7 @@ div.restoresanity.info {
 	display: none;
 	
 	padding: 10px;
+	padding-bottom: 5px;
 	margin: 0px;
 	margin-right: 10px;
 
@@ -57,5 +58,16 @@ p.restoresanity.ruledescription {
 
 p.restoresanity.ruledescription:first-child {
 	padding-top: 0px;
+}
+
+span.restoresanity.logo {
+	font-style: italic;
+	font-size: 12px;
+	color: #777;
+
+	position: relative;
+	float: left;
+
+	margin-top: 10px;
 }
 

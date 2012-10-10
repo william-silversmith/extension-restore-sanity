@@ -106,6 +106,11 @@ function EliminateUselessStories () {
 							})
 					)
 			)
+			.append(
+				jQuery("<span>")
+					.text("The Extension to Restore Sanity")
+					.addClass('restoresanity logo')
+			)
 			.click(function (event) {
 				event.stopPropagation();
 				return false;				

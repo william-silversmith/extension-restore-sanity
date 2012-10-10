@@ -1,6 +1,6 @@
 /* 	content.js
-
-	Contains the logic to drive the extension.
+ *
+ *	Contains the logic to drive the extension.
  */
 
 var rules = [
@@ -15,27 +15,27 @@ var rules = [
 		regexp: /may|might|rumored to|\?\s*$/,
 		except_regexp: /number|rising|falling|^(who|what|where|why|when)/i,
 		apology: "contained a qualifier.",
-		description: "Headlines containing qualifiers such as \"may\" or ending with a question mark are often stories or opinions either so tenuous that the author's editor wouldn't let the publication stand behind it or so obvious you don't need to read it. This rule isn't perfect as sometimes a legitimate question is asked when analyzing data or addressing the reader."
+		description: "Headlines containing qualifiers such as \"may\" or ending with a question mark often indicate an article of poor quality. Typically, the article is so tenuous that the editor would not let the publication stand behind it. This rule isn't perfect; sometimes, a legitimate question is asked when analyzing data or addressing the reader."
 	},
 	{
 		name: "No Talking Points Volleyball",
 		regexp: /bashes|rips|blasts|draw(s|n|ing)?\s+fire/i,	
 		apology: "contained words indicating that the linked article will only contain oft repeated talking points.",
-		description: "Headlines containing the words, phrases, or varients thereof \"rips\", \"blasts\" or \"drawing fire\" will tend to consist of invective talking points or the equally uninformative response from their target. Often these stories volley back and forth adding no new information."
+		description: "Headlines containing the words, phrases, or variants of \"rips\", \"blasts\" or \"drawing fire\" will tend to consist of invective talking points or the equally uninformative response. Often, these stories volley back and forth adding no new information."
 	},
 	{
 		name: "No Overstating Importance",
 		regexp: /lawmaker/i,
 		except_regexp: /lawmakers|representative|senator|senate|house/i,
 		apology: 'indicated that the story will revolve around someone who isn\'t actually important.',
-		description: "The word \"Lawmaker\" isn't typically used in a headline unless the person being referenced is not someone more important (like a Senator or Representative). Most likely, the linked story will be about a legislator at the state or local level saying something stupid that (hopefully) no one else in their party agrees with. If their party did agree, you can bet the reporter would have gotten the statement from an important person."
+		description: "The word \"Lawmaker\" isn't typically used in a headline unless the person being referenced is someone unimportant (like a Senator or Representative). Most likely, the linked story will be about a legislator at the state or local level saying something stupid that (hopefully) no one else in their party agrees with. If their party did agree, you can bet the reporter would have gotten the statement from an important person."
 	},
 	{
 		name: "No Spin Zone",
 		regexp: /\bspin\b/i,
-		except_regexp: /albumn|music|song|bowling|spin[\s-]off|baryon|lepton|higgs|fermion|electron|neutron|proton|physics|engineer/i,
+		except_regexp: /album|music|song|bowling|bike|spin[\s-]off|baryon|lepton|higgs|fermion|electron|neutron|proton|physics|engineer/i,
 		apology: 'contained the word \"spin\".',
-		description: "Any article mentioning spin is almost certaining spinning."
+		description: "Any article mentioning spin is almost certainly spinning."
 	}
 ];
 

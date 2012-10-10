@@ -8,6 +8,9 @@
       "matches": [
         "*://www.google.com/*",
         "*://news.google.com/*",
+        "*://news.yahoo.com/*",
+        "*://www.yahoo.com/*",
+        "*://www.bbc.co.uk/*",
         "*://www.cnn.com/*",
         "*://www.foxnews.com/*",
         "*://www.foxbusiness.com/*",

@@ -31,6 +31,13 @@ var rules = [
 		description: "The word \"Lawmaker\" isn't typically used in a headline unless the person being referenced is someone unimportant (like a Senator or Representative). Most likely, the linked story will be about a legislator at the state or local level saying something stupid that (hopefully) no one else in their party agrees with. If their party did agree, you can bet the reporter would have gotten the statement from an important person."
 	},
 	{
+		name: "No Low Blows",
+		regexp: /blow to|fresh blow|poll blow|blow against|new blow|a blow for/i,
+		except_regexp: /blow to more than just/i,
+		apology: "contained a variant of \"blow to\".",
+		description: "Headlines containing the phrase \"blow to\", \"fresh blow\", or variants thereof tend to describe events as though they matter only to a narrow interest group. Often they are of critical importance to large segments of the population. This interpetation as only affecting the political fortunes of a politican or organization is insulting to the affected populaton and reduces the level of debate."
+	},
+	{
 		name: "No Spin Zone",
 		regexp: /\bspin\b/i,
 		except_regexp: /album|music|song|bowling|bike|spin[\s-]off|baryon|lepton|higgs|fermion|electron|neutron|proton|physics|engineer/i,

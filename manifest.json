@@ -1,7 +1,7 @@
 {
   "name": "The Extension to Restore Sanity",
   "manifest_version": 2,
-  "version": "0.1",
+  "version": "1",
   "description": "Delete superfluous political riff-raff from news sites.",
   "content_scripts": [
     {

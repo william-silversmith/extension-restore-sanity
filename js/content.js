@@ -35,7 +35,7 @@ var rules = [
 		regexp: /blow to|fresh blow|poll blow|blow against|new blow|a blow for/i,
 		except_regexp: /blow to more than just/i,
 		apology: "contained a variant of \"blow to\".",
-		description: "Headlines containing the phrase \"blow to\", \"fresh blow\", or variants thereof tend to describe events as though they matter only to a narrow interest group. Often they are of critical importance to large segments of the population. This interpetation as only affecting the political fortunes of a politican or organization is insulting to the affected populaton and reduces the level of debate."
+		description: "Headlines containing the phrase \"blow to\", \"fresh blow\", or variants thereof tend to describe events as though they matter only to a narrow interest group. Often they are of critical importance to large segments of the population. This interpretation as only affecting the political fortunes of a politican or an organization is insulting to the affected populaton. It reduces the level of debate and improverishes us intellectually."
 	},
 	{
 		name: "No Spin Zone",

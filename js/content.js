@@ -165,6 +165,9 @@ jQuery(document).ready(function () {
 
 	EliminateUselessStories();
 
+	// This is a hack to get around google news's 
+	// ajax loading. There might be better ways to do
+	// this, but this is easy.	
 	setTimeout(EliminateUselessStories, 1000);
 	setTimeout(EliminateUselessStories, 2500);
 

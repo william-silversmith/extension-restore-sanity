@@ -22,13 +22,12 @@ div.restoresanity.info {
 	margin: 0px;
 	margin-right: 10px;
 
-	line-height: 1em;
-
 	background-color: #F1EDE7;
 	
 	border: 1px solid #797065;
 	border-radius: 4px;
 
+	font-family: helvetica, arial, century, times, sans-serif;
 	color: black;
 
 	box-shadow: 10px 10px 5px #888;
@@ -60,6 +59,10 @@ p.restoresanity.ruledescription {
 
 p.restoresanity.ruledescription:first-child {
 	padding-top: 0px;
+}
+
+p.restoresanity.ruledescription a {
+	color: blue;
 }
 
 span.restoresanity.logo {

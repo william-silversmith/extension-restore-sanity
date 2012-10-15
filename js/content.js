@@ -6,59 +6,151 @@
 var rules = [
 	{
 		name: "No Gaffes",
-		regexp: /gaffe/i,
+		headlinefilter: /gaffe/i,
 		apology: "contained the word \"gaffe\".",
 		description: "Headlines containing the word \"gaffe\" are unlikely to contain substansive policy discussion. Instead, they tend to focus on misspoken phrases or embarrassing omissions."
 	},
 	{
 		name: "No Tenuous Stories, Speculations, or Rhetorical Questions",
-		regexp: /may|might|rumored to|\?\s*$/,
-		except_regexp: /number|rising|falling|^(who|what|where|why|when)/i,
+		headlinefilter: /\bmay\b|might|rumored to|\?\s*$/,
+		headlinefilter_except: /number|rising|falling|^(who|what|where|why|when)/i,
 		apology: "contained a qualifier.",
 		description: "Headlines containing qualifiers such as \"may\" or ending with a question mark often indicate an article of poor quality. Typically, the article is so tenuous that the editor would not let the publication stand behind it. This rule isn't perfect; sometimes, a legitimate question is asked when analyzing data or addressing the reader."
 	},
 	{
 		name: "No Talking Points Volleyball",
-		regexp: /bashes|rips|blasts|draw(s|n|ing)?\s+fire/i,	
+		headlinefilter: /bashes|\brips\b|\bblasts\b|draw(s|n|ing)?\s+(fire|condemnation)/i,	
 		apology: "contained words indicating that the linked article will only contain oft repeated talking points.",
 		description: "Headlines containing the words, phrases, or variants of \"rips\", \"blasts\" or \"drawing fire\" will tend to consist of invective talking points or the equally uninformative response. Often, these stories volley back and forth adding no new information."
 	},
 	{
 		name: "No Overstating Importance",
-		regexp: /lawmaker/i,
-		except_regexp: /lawmakers|representative|senator|senate|house/i,
+		headlinefilter: /lawmaker/i,
+		headlinefilter_except: /lawmakers|representative|senator|senate|house|lawmaker ratings/i,
 		apology: 'indicated that the story will revolve around someone who isn\'t actually important.',
 		description: "The word \"Lawmaker\" isn't typically used in a headline unless the person being referenced is someone unimportant (like a Senator or Representative). Most likely, the linked story will be about a legislator at the state or local level saying something stupid that (hopefully) no one else in their party agrees with. If their party did agree, you can bet the reporter would have gotten the statement from an important person."
 	},
 	{
 		name: "No Low Blows",
-		regexp: /blow to|fresh blow|poll blow|blow against|new blow|a blow for/i,
-		except_regexp: /blow to more than just/i,
+		headlinefilter: /blow to|fresh blow|poll blow|blow against|new blow|a blow for/i,
+		headlinefilter_except: /blow to more than just/i,
 		apology: "contained a variant of \"blow to\".",
 		description: "Headlines containing the phrase \"blow to\", \"fresh blow\", or variants thereof tend to describe events as though they matter only to a narrow interest group. Often they are of critical importance to large segments of the population. This interpretation as only affecting the political fortunes of a politican or an organization is insulting to the affected populaton. It reduces the level of debate and improverishes us intellectually."
 	},
 	{
 		name: "No Spin Zone",
-		regexp: /\bspin\b/i,
-		except_regexp: /album|music|song|bowling|bike|spin[\s-]off|baryon|lepton|higgs|fermion|electron|neutron|proton|physics|engineer/i,
+		headlinefilter: /\bspin\b/i,
+		headlinefilter_except: /album|music|song|bowling|bike|spin[\s-]off|baryon|lepton|higgs|fermion|electron|neutron|proton|physics|engineer/i,
 		apology: 'contained the word \"spin\".',
 		description: "Any article mentioning spin is almost certainly spinning."
-	}
+	},
+	{
+		name: "Unbiased?",
+		headlinefilter: /(liberal|conservative|left-?wing|right-?wing)(\s+|\/)(bias|media)/i,
+		apology: "contained a reference to ideological bias.",
+		description: "Headlines containing a reference to an ideological bias (e.g. \"liberal bias\" or \"right-wing media\") are likely to be extrodinarily biased themselves. Expect to see useless ranting, cherry picked facts, and/or an attempt to respond to a perceived (possibly imaginary) slight. Let's be truthful - it's probably just newspeople bitching about other newspeople."
+	},
+	{
+		name: "No Sensationalism",
+		headlinefilter: /mainstream media|\bmsm\b/i,
+		apology: "contained sensationalistic phrasing.",
+		description: "Headlines mentioning the \"mainstream media\" are drawing attention to the fact that they are different and the linked story is often sensationalistic. The publication is likely more concerned with promoting their brand and catching eyeballs than thorough reporting and complete facts. Think of it this way: Would the story be as interesting without mentioning the \"mainstream media\"?"
+	},
 ];
+
+/* By themselves, the rules have false positives in non-politcal articles.
+ * We can more precisely define the links to hit by searching for labels
+ * in the href of the anchor. For instance, CNN political stories typically
+ * look like this: http://www.cnn.com/2012/10/10/politics/crowley-debate/index.html?hpt=hp_bn3
+ * Many news sites do the same thing. If the news sites started to adapt to this, 
+ * then we'll probably have to build a headline classifier in order to detect political stories. 
+ */
+var urlfilters = {
+	// host: regexp
+	"cnn.com" : /politic|ireport|opinion/i,
+	"foxnews.com": /opinion|politic|\/us\//i,
+	"csmonitor.com": /justice|opinion|politic|government|decoder|society/i,
+	"newsmax.com": /newsfront|politic|us/i,
+	"abcnews.go.com": /politic|gma/i, // abc is very good about consigning political stories to labeled categories
+	// "washingtontimes.com": /opinion|blog|campaign|dnc|rnc|politic/i, // there are just too many variants to be covered by a white list here
+	// nbcnews.com: NBC just uses story ids for the most part
+    // msnbc.com: redirects to nbcnews.com
+    // msnbc.msn.com: redirects to nbcnews.com
+	// huffingtonpost.com: Too much stuff not labeled politics
+	// washingtonpost.com/politics: already limited
+	// nytimes.com: already limited
+	// theblaze.com: not even sure if this works properly here
+    // bbc.co.uk: BBC doesn't fit the patterns much anyway, possibly exclude it completely
+	// politico.com: everything is politics
+	// salon.com: no easy filters
+	// thehill.com: it's all politics
+	// infowars.com: it's all politics
+	// talkingpointsmemo.com: it's all politics
+	// townhall.com: it's all politics
+
+	/* Aggregators are hard to describe accurately 
+	   and the links rarely target the sites themselves */
+
+    // "google.com": //i,
+    // "yahoo.com": //i, 
+    // "drudgereport.com": //i, 
+    // "freerepublic.com": //i,
+};
+
+
+/* IsPoliticalUrl
+ *
+ * For certain websites, we can easily identify which stories
+ * are prone to be political stories from the URL. For those
+ * sites, we restrict the operation of the extension to positve
+ * matches to reduce false positives.
+ *
+ * Requires: 
+ * 	[0] url - the url the headline link points to
+ *
+ * Returns: boolean, true indicates the engine should NOT operate
+ */
+function IsPoliticalUrl(url) {
+	var hostname = jQuery('<a>').attr('href', url)[0].hostname;
+	var domain = hostname.match(/(\w+)\.(\w+|co\.uk)$/i)[0];
+
+	var politicalaggregation = /politic/i;
+	if (urlfilters[domain]) {
+		// If the url matches the pattern or the page is an aggregation of political links
+		return urlfilters[domain].test(url)
+			|| urlfilters[domain].test(/politic|election/i) // some sane defaults
+			|| politicalaggregation.test(document.location.href);
+	}
+
+	return true; // Fail-safe for sites without a good filter
+}
 
 /* Scrub
  * 
  * Applies rules against a target phrase. Returns
  * the first rule matched or null if nothing matches. 
+ * Some news sites reliably label their political stories 
+ * in the URL so we restrict the application to the rules
+ * to matching URLs for those sites.
+ *
+ * Requires:
+ *	[0] headline - the text of the headline (user visible)
+ *	[1] url - the URL the headline points to
+ *
+ * Returns: the first applicable rule, null if nothing matches
  */
-function Scrub(phrase) {
+function Scrub(headline, url) {
+
 	for (var i = 0; i < rules.length; i++) {
 		var rule = rules[i];
 
-		if (rule.regexp.test(phrase)
-			&& (rule.except_regexp == null
-				|| (rule.except_regexp
-					&& !rule.except_regexp.test(phrase)))) {
+		var defectiveheadlinetest = rule.headlinefilter.test(headline)
+				&& (rule.headlinefilter_except == null
+					|| (rule.headlinefilter_except
+						&& !rule.headlinefilter_except.test(headline)));
+
+		if (defectiveheadlinetest
+			&& IsPoliticalUrl(url)) {
 
 			return rule;
 		}
@@ -80,9 +172,9 @@ function EliminateUselessStories () {
 		.each(function (index, elem) {
 
 		elem = jQuery(elem);
-		var targetphrase = elem.text();
+		var headline = elem.text();
 
-		var rule = Scrub(targetphrase);
+		var rule = Scrub(headline, elem.attr('href'));
 
 		if (rule == null)
 			return;

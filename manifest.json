@@ -1,7 +1,7 @@
 {
   "name": "The Extension to Restore Sanity",
   "manifest_version": 2,
-  "version": "1",
+  "version": "1.1",
   "description": "Delete superfluous political riff-raff from news sites.",
   "content_scripts": [
     {
@@ -13,7 +13,6 @@
         "*://www.bbc.co.uk/*",
         "*://www.cnn.com/*",
         "*://www.foxnews.com/*",
-        "*://www.foxbusiness.com/*",
         "*://www.nbcnews.com/*",
         "*://www.msnbc.com/*",
         "*://www.msnbc.msn.com/*",
@@ -21,7 +20,20 @@
         "*://www.drudgereport.com/*",
         "*://abcnews.go.com/*",
         "*://www.washingtonpost.com/politics/*",
-        "*://www.nytimes.com/*politics*"
+        "*://www.nytimes.com/*politics*",
+
+        "*://www.politico.com/*",
+        "*://www.salon.com/*",
+        "*://www.newsmax.com/*",
+        "*://www.theblaze.com/*",
+        "*://www.csmonitor.com/*",
+        "*://www.infowars.com/*",
+        "*://www.washingtontimes.com/*",
+        "*://www.thehill.com/*",
+        "*://www.dailykos.com/*",
+        "*://www.freerepublic.com/*",
+        "*://www.talkingpointsmemo.com/*",
+        "*://www.townhall.com/*"
       ],
       "js": ["js/jquery-1.8.2.min.js", "js/content.js"],
       "css": ["css/content.css"]

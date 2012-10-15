@@ -21,6 +21,7 @@
         "*://abcnews.go.com/*",
         "*://www.washingtonpost.com/politics/*",
         "*://www.nytimes.com/*politics*",
+        "*://www.theatlantic.com/politics*",
 
         "*://www.politico.com/*",
         "*://www.salon.com/*",

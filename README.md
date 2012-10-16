@@ -3,6 +3,8 @@ The Extension to Restore Sanity
 
 A Chrome extension to eliminate some classes of bullshit political stories from news sites. It was inspired by "5 Ways to Spot a B.S. Political Story in Under 10 Seconds" by David Wong of Cracked.com which, while funny, contained an inordinate amount of truth. As you might have guessed, the title was inspired by the "Rally to Restore Sanity and/or Fear" that occured in Washington D.C. in 2010. This extension has a common goal in mind: to remove some of the noise from our politics and help us focus on substansive policy discussion (or at least be more aware of the noise). Neither Cracked nor the organizers of the "Rally to Restore Sanity and/or Fear" have endorsed or directly contributed to this program.
 
+You can find the production version of "The Extension to Restore Sanity" at: https://chrome.google.com/webstore/detail/the-extension-to-restore-/bggibicdeedcagmnibgoaggaciolkdhg
+
 Disclaimer
 ========================
 

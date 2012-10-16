@@ -54,7 +54,7 @@ var rules = [
 		name: "No Sensationalism",
 		headlinefilter: /mainstream media|\bmsm\b/i,
 		apology: "contained sensationalistic phrasing.",
-		description: "Headlines mentioning the \"mainstream media\" are drawing attention to the fact that they are different and the linked story is often sensationalistic. The publication is likely more concerned with promoting their brand and catching eyeballs than thorough reporting and complete facts. Think of it this way: Would the story be as interesting without mentioning the \"mainstream media\"?"
+		description: "Headlines mentioning the \"mainstream media\" are drawing attention to the fact that they are different; the linked story is often sensationalistic in order to boost that signal. Think of it this way: Would the story be as interesting without mentioning the \"mainstream media\"? Be wary, the publication may be more concerned with promoting their brand and catching eyeballs than thorough reporting and verified facts."
 	},
 ];
 

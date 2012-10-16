@@ -10,7 +10,23 @@ Disclaimer
 
 This product is not affiliated with or endorsed by ANYONE.
 
-License
+Image Credits
+=============
+
+Images mentioned in this section may have originals stored under source_art.
+
+Small Promotional Graphic:
+
+The horse appearing on the right hand side is a modified version of: 
+	http://www.briarpress.org/24846
+
+The image was licensed under Creative Commons Attribution, Non-Commercial 2.5:
+	http://creativecommons.org/licenses/by-nc/2.5/
+
+The check mark appearing on the left hand side was a public domain image from:
+	http://en.wikipedia.org/wiki/File:Checkmark.png
+
+Software License
 ========================
 
 The MIT License (MIT)

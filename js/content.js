@@ -55,7 +55,7 @@ var rules = [
 		headlinefilter: /mainstream media|\bmsm\b/i,
 		apology: "contained sensationalistic phrasing.",
 		description: "Headlines mentioning the \"mainstream media\" are drawing attention to the fact that they are different; the linked story is often sensationalistic in order to boost that signal. Think of it this way: Would the story be as interesting without mentioning the \"mainstream media\"? Be wary, the publication may be more concerned with promoting their brand and catching eyeballs than thorough reporting and verified facts."
-	},
+	}
 ];
 
 /* By themselves, the rules have false positives in non-politcal articles.
@@ -67,7 +67,7 @@ var rules = [
  */
 var urlfilters = {
 	// host: regexp
-	"cnn.com" : /politic|ireport|opinion/i,
+	"cnn.com" : /politic|ireport|opinion|justice/i,
 	"foxnews.com": /opinion|politic|\/us\//i,
 	"csmonitor.com": /justice|opinion|politic|government|decoder|society/i,
 	"newsmax.com": /newsfront|politic|us/i,
@@ -115,11 +115,15 @@ function IsPoliticalUrl(url) {
 	var domain = hostname.match(/(\w+)\.(\w+|co\.uk)$/i)[0];
 
 	var politicalaggregation = /politic/i;
+	var defaultmatches = /politic|election/i;
+	var defaultexceptions = /\/sports?\//i;
+
 	if (urlfilters[domain]) {
 		// If the url matches the pattern or the page is an aggregation of political links
-		return urlfilters[domain].test(url)
-			|| urlfilters[domain].test(/politic|election/i) // some sane defaults
-			|| politicalaggregation.test(document.location.href);
+		return (urlfilters[domain].test(url)
+				|| defaultmatches.test(url) // some sane defaults
+				|| politicalaggregation.test(document.location.href))
+			&& !defaultexceptions.test(url);
 	}
 
 	return true; // Fail-safe for sites without a good filter
@@ -141,13 +145,16 @@ function IsPoliticalUrl(url) {
  */
 function Scrub(headline, url) {
 
+	var defaultexceptions = /(have|are|do)\s+you/i; // Stories that address the user
+
 	for (var i = 0; i < rules.length; i++) {
 		var rule = rules[i];
 
-		var defectiveheadlinetest = rule.headlinefilter.test(headline)
+		var defectiveheadlinetest = (rule.headlinefilter.test(headline)
 				&& (rule.headlinefilter_except == null
 					|| (rule.headlinefilter_except
-						&& !rule.headlinefilter_except.test(headline)));
+						&& !rule.headlinefilter_except.test(headline))))
+				&& !defaultexceptions.test(headline);
 
 		if (defectiveheadlinetest
 			&& IsPoliticalUrl(url)) {

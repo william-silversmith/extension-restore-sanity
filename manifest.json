@@ -26,7 +26,7 @@
         "*://www.politico.com/*",
         "*://www.salon.com/*",
         "*://www.newsmax.com/*",
-        "*://www.theblaze.com/*", // uses nested tags, prevents proper operations
+        "*://www.theblaze.com/*",
         "*://www.csmonitor.com/*",
         "*://www.infowars.com/*",
         "*://www.washingtontimes.com/*",

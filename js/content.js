@@ -71,7 +71,9 @@ var urlfilters = {
 	"foxnews.com": /opinion|politic|\/us\//i,
 	"csmonitor.com": /justice|opinion|politic|government|decoder|society/i,
 	"newsmax.com": /newsfront|politic|us/i,
-	"abcnews.go.com": /politic|gma/i, // abc is very good about consigning political stories to labeled categories
+	"go.com": /politic|gma/i, // abc is very good about consigning political stories to labeled categories
+	
+	//"cbsnews.com": //i, // cbs has an unreliable url scheme
 	// "washingtontimes.com": /opinion|blog|campaign|dnc|rnc|politic/i, // there are just too many variants to be covered by a white list here
 	// nbcnews.com: NBC just uses story ids for the most part
     // msnbc.com: redirects to nbcnews.com
@@ -111,8 +113,20 @@ var urlfilters = {
  * Returns: boolean, true indicates the engine should NOT operate
  */
 function IsPoliticalUrl(url) {
+	if (url == null) {
+		return true;
+	}
+
 	var hostname = jQuery('<a>').attr('href', url)[0].hostname;
-	var domain = hostname.match(/(\w+)\.(\w+|co\.uk)$/i)[0];
+	var domainmatches = hostname.match(/(\w+)\.(\w+|co\.uk)$/i);
+
+	if (domainmatches
+		&& !domainmatches.length) {
+
+		return true;
+	}
+
+	var domain = domainmatches[0];
 
 	var politicalaggregation = /politic/i;
 	var defaultmatches = /politic|election/i;
@@ -144,6 +158,12 @@ function IsPoliticalUrl(url) {
  * Returns: the first applicable rule, null if nothing matches
  */
 function Scrub(headline, url) {
+
+	if (headline == null
+		|| headline == "") {
+
+		return null;
+	}
 
 	var defaultexceptions = /(have|are|do)\s+you/i; // Stories that address the user
 
@@ -189,6 +209,14 @@ function EliminateUselessStories () {
 		var infodiv = jQuery("<div>")
 			.addClass('restoresanity info')
 			.append(
+				jQuery("<span>")
+					.text('X')
+					.addClass('restoresanity closebutton')
+					.click(function (event) {
+						jQuery(this).closest('.restoresanity.info').css('display', 'none');
+					})
+			)
+			.append(
 				jQuery("<p>")
 					.addClass('restoresanity rulename')
 					.text(rule.name)
@@ -220,6 +248,12 @@ function EliminateUselessStories () {
 			.click(function (event) {
 				event.stopPropagation();
 				return false;				
+			})
+			.mouseover(function (event) {
+				jQuery(this).find('.closebutton').css('visibility', 'visible');
+			})
+			.mouseout(function (event) {
+				jQuery(this).find('.closebutton').css('visibility', 'hidden');	
 			});
 
 		var apology = jQuery("<span>")

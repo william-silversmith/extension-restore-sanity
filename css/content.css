@@ -10,6 +10,29 @@ span.restoresanity.whylink {
 	font-size: 0.9em;
 }
 
+.restoresanity.closebutton {
+	position: relative;
+	float: right;
+	bottom: 2px;
+	right: 5px;
+
+	font-size: 15px;
+	font-family: sans-serif;
+
+	visibility: hidden;
+
+	color: #777777;
+	cursor: pointer;
+}
+
+.restoresanity.closebutton:hover {
+	color: black;	
+}
+
+.restoresanity.closebutton:active {
+	color: red;
+}
+
 div.restoresanity.info {
 	position: absolute;
 	z-index: 90000;

@@ -1,7 +1,7 @@
 {
   "name": "The Extension to Restore Sanity",
   "manifest_version": 2,
-  "version": "1.1",
+  "version": "1.1.1",
   "description": "Delete superfluous political riff-raff from news sites.",
   "content_scripts": [
     {
@@ -34,7 +34,9 @@
         "*://www.freerepublic.com/*",
         "*://talkingpointsmemo.com/*",
         "*://*.talkingpointsmemo.com/*",
-        "*://www.townhall.com/*"
+        "*://www.townhall.com/*",
+
+        "*://www.cbsnews.com/*"
       ],
       "js": ["js/jquery-1.8.2.min.js", "js/content.js"],
       "css": ["css/content.css"]

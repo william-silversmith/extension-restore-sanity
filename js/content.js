@@ -120,8 +120,8 @@ function IsPoliticalUrl(url) {
 	var hostname = jQuery('<a>').attr('href', url)[0].hostname;
 	var domainmatches = hostname.match(/(\w+)\.(\w+|co\.uk)$/i);
 
-	if (domainmatches
-		&& !domainmatches.length) {
+	if (domainmatches == null
+		|| !domainmatches.length) {
 
 		return true;
 	}
@@ -165,7 +165,14 @@ function Scrub(headline, url) {
 		return null;
 	}
 
-	var defaultexceptions = /(have|are|do)\s+you/i; // Stories that address the user
+	var defaultheadlineexceptions = /(have|are|do)\s+you/i; // Stories that address the user
+	var defaulturlexceptions = /\/(health|med|medicine|wellness)\/|sci(ence)?/i;
+
+	if (defaulturlexceptions.test(url)
+		|| defaulturlexceptions.test(document.location.href)) {
+
+		return null;
+	}
 
 	for (var i = 0; i < rules.length; i++) {
 		var rule = rules[i];
@@ -174,7 +181,7 @@ function Scrub(headline, url) {
 				&& (rule.headlinefilter_except == null
 					|| (rule.headlinefilter_except
 						&& !rule.headlinefilter_except.test(headline))))
-				&& !defaultexceptions.test(headline);
+				&& !defaultheadlineexceptions.test(headline);
 
 		if (defectiveheadlinetest
 			&& IsPoliticalUrl(url)) {

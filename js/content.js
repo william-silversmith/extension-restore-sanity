@@ -99,6 +99,30 @@ var urlfilters = {
     // "freerepublic.com": //i,
 };
 
+/* Shuffle
+ *
+ * Implements the Durstenfeld shuffle, a modern variant
+ * of the Fisher-Yates algorithm to randomize an array. 
+ *
+ * Algorithm Source: http://en.wikipedia.org/wiki/Fisher-Yates_shuffle
+ * 
+ * Requires:
+ * 	[0] array: the array to be shuffled
+ *
+ * Returns: The shuffled array
+ */
+function Shuffle(array) {
+	for (var i = array.length - 1; i >= 1; i--) {
+		// hack, but it'll do for our purposes since we'll never reach 10B rules 
+		// and I don't want to accidently be too clever
+		var j = Math.round(Math.random() * 10000000000) % i; 
+		var tmp = array[i];
+		array[i] = array[j];
+		array[j] = tmp;
+	}
+
+	return array;
+}
 
 /* IsPoliticalUrl
  *
@@ -174,8 +198,13 @@ function Scrub(headline, url) {
 		return null;
 	}
 
-	for (var i = 0; i < rules.length; i++) {
-		var rule = rules[i];
+	// Randomize the order of the rules to prevent 
+	// the same errors from always showing up even 
+	// though many rules might apply. 
+	var shufflerules = Shuffle(rules);
+
+	for (var i = 0; i < shufflerules.length; i++) {
+		var rule = shufflerules[i];
 
 		var defectiveheadlinetest = (rule.headlinefilter.test(headline)
 				&& (rule.headlinefilter_except == null

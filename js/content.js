@@ -13,20 +13,20 @@ var rules = [
 	{
 		name: "No Tenuous Stories, Speculations, or Rhetorical Questions",
 		headlinefilter: /\bmay\b|might|rumored to|\?\s*$/,
-		headlinefilter_except: /number|rising|falling|^(who|what|where|why|when)/i,
+		headlinefilter_except: /falling|number|rising|^(who|what|where|why|when)/i,
 		apology: "contained a qualifier.",
 		description: "Headlines containing qualifiers such as \"may\" or ending with a question mark often indicate an article of poor quality. Typically, the article is so tenuous that the editor would not let the publication stand behind it. This rule isn't perfect; sometimes, a legitimate question is asked when analyzing data or addressing the reader."
 	},
 	{
 		name: "No Talking Points Volleyball",
-		headlinefilter: /bashes|\brips\b|\bblasts\b|draw(s|n|ing)?\s+(fire|condemnation)/i,	
+		headlinefilter: /bashes|\bblasts\b|draw(s|n|ing)?\s+(fire|condemnation)|\brips\b/i,	
 		apology: "contained words indicating that the linked article will only contain oft repeated talking points.",
 		description: "Headlines containing the words, phrases, or variants of \"rips\", \"blasts\" or \"drawing fire\" will tend to consist of invective talking points or the equally uninformative response. Often, these stories volley back and forth adding no new information."
 	},
 	{
 		name: "No Overstating Importance",
 		headlinefilter: /lawmaker/i,
-		headlinefilter_except: /lawmakers|representative|senator|senate|house|lawmaker ratings/i,
+		headlinefilter_except: /house|lawmakers|lawmaker ratings|representative|senate|senator/i,
 		apology: 'indicated that the story will revolve around someone who isn\'t actually important.',
 		description: "The word \"Lawmaker\" isn't typically used in a headline unless the person being referenced is someone unimportant (like a Senator or Representative). Most likely, the linked story will be about a legislator at the state or local level saying something stupid that (hopefully) no one else in their party agrees with. If their party did agree, you can bet the reporter would have gotten the statement from an important person."
 	},
@@ -40,7 +40,7 @@ var rules = [
 	{
 		name: "No Spin Zone",
 		headlinefilter: /\bspin\b/i,
-		headlinefilter_except: /album|music|song|bowling|bike|spin[\s-]off|baryon|lepton|higgs|fermion|electron|neutron|proton|physics|engineer/i,
+		headlinefilter_except: /album|baryon|bike|bicycle|bottle|bowling|class|electron|engineer|fermion|higgs|lepton|music|neutron|physics|proton|song|spin[\s-]off/i,		apology: 'contained the word \"spin\".',
 		apology: 'contained the word \"spin\".',
 		description: "Any article mentioning spin is almost certainly spinning."
 	},

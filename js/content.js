@@ -19,7 +19,8 @@ var rules = [
 	},
 	{
 		name: "No Talking Points Volleyball",
-		headlinefilter: /bashes|\bblasts\b|draw(s|n|ing)?\s+(fire|condemnation)|\brips\b/i,	
+		headlinefilter: /bashes|\bblasts\b|draw(s|n|ing)?\s+(fire|condemnation)|\brips\b|slams?/i,
+		headlinefilter_except: "\bdied?\b|injury|explosion|bomb|explosive",
 		apology: "contained words indicating that the linked article will only contain oft repeated talking points.",
 		description: "Headlines containing the words, phrases, or variants of \"rips\", \"blasts\" or \"drawing fire\" will tend to consist of invective talking points or the equally uninformative response. Often, these stories volley back and forth adding no new information."
 	},

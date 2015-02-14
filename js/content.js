@@ -19,7 +19,7 @@ var rules = [
 	},
 	{
 		name: "No Talking Points Volleyball",
-		headlinefilter: /bashes|\bblasts\b|draw(s|n|ing)?\s+(fire|condemnation)|\brips\b|slams?/i,
+		headlinefilter: /bashes|\bblasts\b|draw(s|n|ing)?\s+(fire|condemnation)|\brips\b|\bslams?/i,
 		headlinefilter_except: /\bdied?\b|injury|explosion|bomb|explosive|police/i,
 		apology: "contained words indicating that the linked article will only contain oft repeated talking points.",
 		description: "Headlines containing the words, phrases, or variants of \"rips\", \"blasts\" or \"drawing fire\" will tend to consist of invective talking points or the equally uninformative response. Often, these stories volley back and forth adding no new information."
@@ -52,9 +52,9 @@ var rules = [
 		description: "Headlines containing a reference to an ideological bias (e.g. \"liberal bias\" or \"right-wing media\") are likely to be extrodinarily biased themselves. Expect to see useless ranting, cherry picked facts, and/or an attempt to respond to a perceived (possibly imaginary) slight. Let's be truthful - it's probably just newspeople bitching about other newspeople."
 	},
 	{
-		name: "No Sensationalism",
+		name: "Lamestream Media",
 		headlinefilter: /mainstream media|\bmsm\b/i,
-		apology: "contained sensationalistic phrasing.",
+		apology: "refrenced the \"mainstream media\".",
 		description: "Headlines mentioning the \"mainstream media\" are drawing attention to the fact that they are different; the linked story is often sensationalistic in order to boost that signal. Think of it this way: Would the story be as interesting without mentioning the \"mainstream media\"? Be wary, the publication may be more concerned with promoting their brand and catching eyeballs than thorough reporting and verified facts."
 	}
 ];
